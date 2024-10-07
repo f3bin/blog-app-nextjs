@@ -1,0 +1,31 @@
+.main_container {
+     padding: 30px 0;
+
+     .back_button {
+          width: 100px;
+          height: 30px;
+          background-color: blue;
+          border: none;
+          margin-left: 30px;
+          cursor: pointer;
+     }
+
+     .blog_root {
+          width: 100%;
+          padding: 30px;
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+
+          .blog_container {
+               border: 1px solid white;
+               width: 300px;
+               height: 150px;
+               display: flex;
+               flex-direction: column;
+               gap: 13px;
+               padding: 10px;
+
+          }
+     }
+}
