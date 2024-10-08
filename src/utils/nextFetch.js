@@ -1,0 +1,10 @@
+export const nextFetch = async (slug, token) => {
+  const res = await fetch(`http://localhost:3001/${slug}`);
+
+  if (res?.status == 200) {
+    let result = res ? await res?.json() : "";
+    return result;
+  } else {
+    return res?.status;
+  }
+};

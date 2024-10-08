@@ -1,19 +1,17 @@
-"use client";
 import React from "react";
 import Style from "./blogDetail.module.scss";
-import useBlogDetail from "./useBlogDetail";
+import { nextFetch } from "@/utils/nextFetch";
+import Link from "next/link";
 
-const BlogDetail = ({ params }) => {
-  const { data, loading, handleBackButton } = useBlogDetail(params?.blogID);
+const BlogDetail = async ({ params }) => {
+  const data = await nextFetch(`blogs/${params?.blogID}`);
   return (
     <div className={Style.main_container}>
-      <button className={Style.back_button} onClick={handleBackButton}>
-        Back to blogs
-      </button>
+      <Link href="/blogs">
+        <button className={Style.back_button}>Back to blogs</button>
+      </Link>
       <div className={Style.blog_root}>
-        {loading ? (
-          <>Loading...</>
-        ) : data ? (
+        {data ? (
           <div>
             <h3>Blog Title is {data["title"]}</h3>
             <p>Blog Content is {data["body"]}</p>

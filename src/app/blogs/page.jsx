@@ -1,28 +1,26 @@
-"use client";
 import React from "react";
-import useBlogs from "./useBlogs";
 import Style from "./blogs.module.scss";
+import { nextFetch } from "@/utils/nextFetch";
+import Link from "next/link";
 
-const Blogs = () => {
-  const { data, loading, handleClickBlog, handleClickNewBlog } = useBlogs();
+const Blogs = async () => {
+  const data = await nextFetch("blogs");
   return (
     <div className={Style.main_container}>
-      <button className={Style.add_button} onClick={handleClickNewBlog}>
-        Add new blog
-      </button>
+      <Link href="/blogs/new-blog">
+        <button className={Style.add_button}>Add new blog</button>
+      </Link>
       <div className={Style.blog_root}>
-        {loading ? (
-          <>Loading...</>
-        ) : data?.length > 0 ? (
+        {data?.length > 0 ? (
           data?.map((item) => (
-            <div
+            <Link
               className={Style.blog_container}
               key={item.id}
-              onClick={() => handleClickBlog(item?.id)}
+              href={`/blogs/${item?.id}`}
             >
               <h3>{item.title}</h3>
               <p>{item.body}</p>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No data available.</p>
