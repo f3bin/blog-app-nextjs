@@ -4,7 +4,7 @@ import { nextFetch } from "@/utils/nextFetch";
 import Link from "next/link";
 
 const BlogDetail = async ({ params }) => {
-  const data = await nextFetch(`blogs/${params?.blogID}`);
+  const data = await nextFetch(`blogs/${params?.blogID}`, "blogDetail");
   return (
     <div className={Style.main_container}>
       <Link href="/blogs">

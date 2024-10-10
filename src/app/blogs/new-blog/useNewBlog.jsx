@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const useNewBlog = () => {
   const router = useRouter();
@@ -69,6 +70,8 @@ const useNewBlog = () => {
 
         if (response.ok) {
           handleBackButton();
+          // revalidatePath("/blogs");
+          // revalidateTag("blogList");
           toast.success("Blog Added Successfully");
         } else {
           console.error("Error submitting data:", response.statusText);

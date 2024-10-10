@@ -4,7 +4,8 @@ import { nextFetch } from "@/utils/nextFetch";
 import Link from "next/link";
 
 const Blogs = async () => {
-  const data = await nextFetch("blogs");
+  const data = await nextFetch("blogs", "blogList");
+
   return (
     <div className={Style.main_container}>
       <Link href="/blogs/new-blog">
@@ -18,8 +19,10 @@ const Blogs = async () => {
               key={item.id}
               href={`/blogs/${item?.id}`}
             >
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
             </Link>
           ))
         ) : (
